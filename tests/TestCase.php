@@ -26,9 +26,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
         // ]);
         $this->artisan('laravel-config:install');
 
-        if (file_exists(app_path('Models/Config.php'))) {
-            require_once app_path('Models/Config.php');
-        }
+        $this->autoloadFix();
     }
 
     /**
@@ -40,5 +38,22 @@ class TestCase extends \Orchestra\Testbench\TestCase
         return [
             LaravelConfigServiceProvider::class,
         ];
+    }
+
+    protected function autoloadFix(): void
+    {
+        $dirs_to_load = [
+            database_path('factories'),
+            app_path('Traits'),
+            app_path('Models'),
+        ];
+
+        foreach ($dirs_to_load as $dir) {
+            if (is_dir($dir)) {
+                foreach (glob($dir . '/*.php') as $file) {
+                    require_once $file;
+                }
+            }
+        }
     }
 }
