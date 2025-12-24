@@ -43,7 +43,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function autoloadFix(): void
     {
         $dirs_to_load = [
-            database_path('factories'),
+            // database_path('factories'),
             app_path('Traits'),
             app_path('Models'),
         ];
