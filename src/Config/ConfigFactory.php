@@ -2,6 +2,7 @@
 
 namespace TarfinLabs\LaravelConfig\Config;
 
+use TarfinLabs\LaravelConfig\Enums\ConfigDataType;
 use App\Models\Config as ConfigModel;
 
 class ConfigFactory
@@ -63,6 +64,9 @@ class ConfigFactory
      */
     public function setType($type): self
     {
+        if ($type instanceof ConfigDataType) {
+            $type = $type->value; // get the string representation
+        }
         $this->configItem->type = $type;
 
         return $this;
