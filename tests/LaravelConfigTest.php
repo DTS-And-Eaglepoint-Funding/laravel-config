@@ -288,7 +288,7 @@ class LaravelConfigTest extends TestCase
     /** @test */
     public function it_returns_in_caster_type_if_type_is_custom_caster_with_param(): void
     {
-        $config = factory(Config::class)->create([
+        $config = factory(ConfigModel::class)->create([
             'name' => 'fatih.was.here',
             'val' => [ConfigDataType::DATE],
             'type' => AsEnumCollection::class.':'.ConfigDataType::class,
@@ -305,7 +305,7 @@ class LaravelConfigTest extends TestCase
     /** @test */
     public function it_returns_in_caster_type_if_type_is_custom_caster(): void
     {
-        $config = factory(Config::class)->create([
+        $config = factory(ConfigModel::class)->create([
             'name' => 'fatih.was.here',
             'val' => [ConfigDataType::DATE->value],
             'type' => AsCollection::class,
