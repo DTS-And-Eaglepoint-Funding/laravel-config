@@ -25,6 +25,10 @@ class TestCase extends \Orchestra\Testbench\TestCase
         //     '--realpath' => realpath(__DIR__.'/../database/migrations'),
         // ]);
         $this->artisan('laravel-config:install');
+
+        if (file_exists(app_path('Models/Config.php'))) {
+            require_once app_path('Models/Config.php');
+        }
     }
 
     /**
