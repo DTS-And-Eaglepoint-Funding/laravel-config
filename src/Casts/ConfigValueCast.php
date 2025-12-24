@@ -21,8 +21,9 @@ class ConfigValueCast implements CastsAttributes
      */
     public function get($model, string $key, mixed $value, array $attributes)
     {
+        $type = $attributes['type'] ?? 'string';
         // Check for custom caster
-        $parts = explode(':', $attributes['type']);
+        $parts = explode(':', $type);
         $casterClass = array_shift($parts);
 
         if (class_exists($casterClass)) {
@@ -39,7 +40,7 @@ class ConfigValueCast implements CastsAttributes
         }
 
         // Fallback to simple switch logic
-        switch ($attributes['type'] ?? null) {
+        switch ($type) {
             case ConfigDataType::BOOLEAN->value:
                 return (bool) $value;
             case ConfigDataType::INTEGER->value:
@@ -66,8 +67,9 @@ class ConfigValueCast implements CastsAttributes
      */
     public function set($model, string $key, mixed $value, array $attributes)
     {
+        $type = $attributes['type'] ?? 'string';
         // Check for custom caster
-        $parts = explode(':', $attributes['type']);
+        $parts = explode(':', $type);
         $casterClass = array_shift($parts);
 
         if (class_exists($casterClass)) {
@@ -84,7 +86,7 @@ class ConfigValueCast implements CastsAttributes
         }
 
         // Fallback to simple switch logic
-        switch ($attributes['type'] ?? null) {
+        switch ($type) {
             case ConfigDataType::DATE->value:
                 return Carbon::parse($value)->format('Y-m-d');
             case ConfigDataType::DATE_TIME->value:
