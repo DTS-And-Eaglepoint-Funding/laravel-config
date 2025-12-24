@@ -9,7 +9,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                php: [8.1, 8.2, 8.3, 8.4]
+                php: [8.1, 8.2, 8.3, 8.4, 8.5]
                 laravel: [8, 9, 10, 11, 12]
                 stability: [prefer-stable]
                 exclude:
@@ -20,27 +20,31 @@ jobs:
                     laravel: 8
                   - php: 8.4
                     laravel: 8
+                  - php: 8.5
+                    laravel: 8
                 
                   # Laravel 9
-                  - php: 8.1
-                    laravel: 9
                   - php: 8.3
                     laravel: 9
                   - php: 8.4
+                    laravel: 9
+                  - php: 8.5
                     laravel: 9
                 
                   # Laravel 10
                   - php: 8.4
                     laravel: 10
+                  - php: 8.5
+                    laravel: 10
                 
                   # Laravel 11 (PHP < 8.2 not allowed)
                   - php: 8.1
                     laravel: 11
-                
+                  - php: 8.5
+                    laravel: 11
+
                   # Laravel 12 (PHP < 8.3 not allowed)
                   - php: 8.1
-                    laravel: 12
-                  - php: 8.2
                     laravel: 12
 
         name: P${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.stability }}

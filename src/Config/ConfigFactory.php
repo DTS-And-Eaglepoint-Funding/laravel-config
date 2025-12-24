@@ -65,7 +65,7 @@ class ConfigFactory
     public function setType($type): self
     {
         if ($type instanceof ConfigDataType) {
-            $type = $type->value; // get the string representation
+            $type = $type->value;
         }
         $this->configItem->type = $type;
 
