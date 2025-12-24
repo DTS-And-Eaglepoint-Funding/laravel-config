@@ -194,7 +194,6 @@ trait LaravelConfigTrait
     /**
      * Fill config paremeter columns.
      *
-     * @param  Config  $config
      * @param  ConfigItem  $configItem
      * @return parent
      */
