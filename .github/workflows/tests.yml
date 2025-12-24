@@ -5,7 +5,8 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
     test:
         runs-on: ubuntu-latest
-
+        env:
+          COMPOSER_AUDIT_BLOCK_INSECURE: "0"
         strategy:
             fail-fast: false
             matrix:
