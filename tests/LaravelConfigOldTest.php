@@ -7,18 +7,17 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use TarfinLabs\LaravelConfig\Config\ConfigFactory;
 use TarfinLabs\LaravelConfig\Enums\ConfigDataType;
-use TarfinLabs\LaravelConfig\LaravelConfig;
 
 class LaravelConfigOldTest extends TestCase
 {
-    /** @var LaravelConfig */
+    /** @var ConfigModel */
     protected $laravelConfig;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->laravelConfig = new LaravelConfig();
+        $this->laravelConfig = new ConfigModel();
     }
 
     /** @test */
@@ -94,7 +93,7 @@ class LaravelConfigOldTest extends TestCase
                               ->setDescription('updated-description')
                               ->get();
 
-        $this->laravelConfig->update($config, $configItem);
+        $this->laravelConfig->update_config( $configItem);
 
         $this->assertDatabaseHas(config('laravel-config.table'), [
             'name' => $config->name,
@@ -111,7 +110,7 @@ class LaravelConfigOldTest extends TestCase
         $config = factory(ConfigModel::class)->create(['name' => $name]);
         $this->assertDatabaseHas(config('laravel-config.table'), ['name' => $config->name]);
 
-        $this->laravelConfig->delete($config);
+        $this->laravelConfig->delete_config($config);
 
         $this->assertDatabaseMissing(config('laravel-config.table'), ['name' => $name]);
     }
