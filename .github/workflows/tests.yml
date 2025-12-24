@@ -48,7 +48,7 @@ jobs:
                   - php: 8.1
                     laravel: 12
 
-        name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.stability }}
+        name: php ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.stability }}
 
         services:
             mysql:
@@ -74,20 +74,7 @@ jobs:
                     coverage: none
 
             -   name: Install dependencies
-                run: |
-                    case "${{ matrix.laravel }}" in
-                      8) TB="^6.47" ;;
-                      9) TB="^7.55" ;;
-                      10) TB="^8.36" ;;
-                      11) TB="^9.15" ;;
-                      12) TB="^10.8" ;;
-                    esac
-                
-                    composer update \
-                      --prefer-stable \
-                      --no-interaction \
-                      --no-progress \
-                      --with="illuminate/support:^${{ matrix.laravel }},orchestra/testbench:${TB}"
+                run: composer update --prefer-stable --no-interaction --no-progress --with="illuminate/support:^${{ matrix.laravel }}"
 
             -   name: Start database server
                 run: sudo /etc/init.d/mysql start
