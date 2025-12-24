@@ -22,6 +22,9 @@ class ConfigValueCast implements CastsAttributes
     public function get($model, string $key, mixed $value, array $attributes)
     {
         $type = $attributes['type'] ?? 'string';
+        if ($type instanceof ConfigDataType) {
+            $type = $type->value;
+        }
         // Check for custom caster
         $parts = explode(':', $type);
         $casterClass = array_shift($parts);
@@ -68,6 +71,9 @@ class ConfigValueCast implements CastsAttributes
     public function set($model, string $key, mixed $value, array $attributes)
     {
         $type = $attributes['type'] ?? 'string';
+        if ($type instanceof ConfigDataType) {
+            $type = $type->value;
+        }
         // Check for custom caster
         $parts = explode(':', $type);
         $casterClass = array_shift($parts);
