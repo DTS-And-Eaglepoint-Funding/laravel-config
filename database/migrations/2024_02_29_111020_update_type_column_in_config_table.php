@@ -26,7 +26,9 @@ class UpdateTypeColumnInConfigTable extends Migration
     public function down(): void
     {
         $tableName = config('laravel-config.table');
-
+        DB::table($tableName)
+            ->whereNotIn('type', ['boolean', 'text'])
+            ->update(['type' => 'text']);
         Schema::table($tableName, function () use ($tableName): void {
             DB::statement("ALTER TABLE $tableName CHANGE type type ENUM('boolean','text') DEFAULT 'boolean' NOT NULL ");
         });

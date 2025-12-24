@@ -2,7 +2,7 @@
 
 namespace TarfinLabs\LaravelConfig\Tests;
 
-// use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use TarfinLabs\LaravelConfig\LaravelConfigServiceProvider;
 
@@ -18,12 +18,12 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-        // Schema::dropAllTables();
+        Schema::dropAllTables();
 
-        // $this->artisan('migrate', [
-        //     '--database' => 'mysql',
-        //     '--realpath' => realpath(__DIR__.'/../database/migrations'),
-        // ]);
+        $this->artisan('migrate', [
+            '--database' => 'mysql',
+            '--realpath' => realpath(__DIR__.'/../database/migrations'),
+        ]);
         $this->artisan('laravel-config:install');
 
         $this->autoloadFix();
