@@ -3,6 +3,9 @@ All notable changes to `laravel-config` will be documented in this file.
 
 ## [Unreleased]
 
+## [6.1.0] - 2026-04-02
+- Laravel 13 support added.
+
 ## [6.0.0] - 2025-12-22
 
 ### Breaking Changes
